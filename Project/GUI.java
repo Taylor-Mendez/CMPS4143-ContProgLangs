@@ -373,6 +373,7 @@ public class GUI
         }
         else if (multiple.BestCase() <= remain.BestCase())
         {
+            //Return coin amounts
             return multiple.getChange();
         }
         else
