@@ -1,7 +1,5 @@
 import java.lang.reflect.InvocationTargetException;
 import java.awt.BorderLayout;
-
-import javax.lang.model.util.ElementScanner14;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.Color;
@@ -34,7 +32,6 @@ public class GUI
 {
     //Attributes
     int[] timeCases;        //Time complexities of all three algorithms
-    int[] spaceCases;       //Space complexities of all three algorithms
     int[] bestCases;        //Accuray of each algorithm in getting the least amount of change
 
     //Set containing American currency values * 100 to take into account cents-ranges from $.01 - $100
@@ -54,10 +51,9 @@ public class GUI
      * Returns:
      *      Void
      */
-    public GUI(int[] time, int[] space, int[] bestCase)
+    public GUI(int[] time, int[] bestCase)
     {
         timeCases = time;     //Store time complexities
-        spaceCases = space;   //Store space complexities
         bestCases = bestCase; //Store how accurate each algorithm was
     }
 
@@ -105,7 +101,7 @@ public class GUI
                 //-----------------------------------------------------------------------
 
                 //Create Bar chart Showing tested data for complexities
-                BarChart chart = new BarChart("Variables", timeCases, new int[]{1,2,3}, bestCases);           
+                BarChart chart = new BarChart("Variables", timeCases, bestCases);           
                 chart.pack();
                 chart.setLocation(20, 40);  //Place graph in middle of main frame
                 chart.setSize(950, 500);    //Make graph slightly smaller then the main frame
@@ -333,8 +329,14 @@ public class GUI
         }
 
         //If there was an error when trying to show the GUI catch it and leave program
-        catch(InvocationTargetException e){}
-        catch(InterruptedException e){}
+        catch(InvocationTargetException e)
+        {
+            e.printStackTrace();
+        }
+        catch(InterruptedException e)
+        {
+            e.printStackTrace();
+        }
         //The user did not enter numerical values to make change with
         catch(NumberFormatException e)
         {
@@ -373,7 +375,6 @@ public class GUI
         }
         else if (multiple.BestCase() <= remain.BestCase())
         {
-            //Return coin amounts
             return multiple.getChange();
         }
         else

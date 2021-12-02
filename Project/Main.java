@@ -102,7 +102,7 @@ public class Main
             scan.close();
 
             //Create GUI and display results
-            GUI display = new GUI(TimeCases, new int[]{16,16,16}, AlgoCases);
+            GUI display = new GUI(TimeCases, AlgoCases);
             display.getGUI();
 
              
@@ -127,4 +127,3 @@ public class Main
         
     }
 }
-
